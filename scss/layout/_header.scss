@@ -1,0 +1,136 @@
+/* header */
+.header {
+	position: fixed;
+	width: 100%;
+	left: 0;
+	top: 0;
+	backdrop-filter: blur(10px);
+	background-color: rgba(var(--color-gray-00), alpha(1));
+	transition: height 0.4s;
+	z-index: 10;
+	.header-inner {
+		height: var(--header-height);
+		padding: 0 2rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.logo {
+		width: 12rem;
+		font-size: 2rem;
+	}
+	nav {
+		@media (max-width: 768px) {
+			display: none;
+		}
+		.gnb {
+			@include flex-center();
+			height: 6rem;
+			gap: 2rem;
+			> li {
+				height: 100%;
+			}
+			a {
+				height: 100%;
+				@include flex-center();
+			}
+			.sub-menu {
+				padding: 1.2rem 0;
+				@include scale-hidden(0.4s);
+				li {
+					color: var(--color-gray-50);
+					& + li {
+						margin-top: 1.2rem;
+					}
+				}
+			}
+		}
+	}
+	// .utils {
+	// }
+
+	&.menu-open {
+		& + .header-bg {
+			@include scale-show();
+		}
+		.gnb .sub-menu {
+			@include scale-show();
+		}
+	}
+}
+.header-bg {
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	@include scale-hidden();
+	background-color: rgba(var(--color-gray-00), alpha(1));
+	backdrop-filter: blur(10px);
+}
+
+.gnb-mo {
+	position: fixed;
+	padding: 6.4rem 3rem 3rem;
+	top: 0;
+	right: 0;
+	z-index: 11;
+	background-color: rgba(var(--color-bg-rgb), alpha(1));
+	backdrop-filter: blur(10px);
+	width: 100%;
+	max-width: 40rem;
+	height: 100%;
+	@include hidden();
+	transform: translateX(100%);
+	&[hidden] {
+		/* [hidden] 속성을 덮어버릴 수 있음(여기서는 show/hide를 오파시티로 해서 안보이는거지 실제론 없어지지 않음, 그래서 포커스 안잡힐 수 있음)*/
+		display: none;
+	}
+	&.show {
+		@include show();
+		transform: translateX(0%);
+	}
+
+	.gnb-mo-header {
+		@include flex-center();
+		justify-content: space-between;
+	}
+	.gnb-mo-body {
+		margin-top: 2rem;
+		a {
+			display: block;
+			width: 100%;
+		}
+		> li {
+			font-size: 1.8rem;
+			font-weight: 600;
+			& + li {
+				margin-top: 1.5rem;
+			}
+		}
+		.sub-menu {
+			font-size: 1.6rem;
+			font-weight: 500;
+			background-color: rgba(var(--color-bg-rgb), alpha(1));
+			border-radius: 1rem;
+			@include hidden();
+			padding: 0;
+			margin-top: 0;
+			height: 0;
+			&.show {
+				@include show();
+				padding: 1rem 0;
+				margin-top: 1rem;
+				transition: all 0.4s ease;
+			}
+			> li {
+				padding-left: 1.2rem;
+
+				& + li {
+					margin-top: 1rem;
+				}
+			}
+		}
+	}
+}
+/*// header */

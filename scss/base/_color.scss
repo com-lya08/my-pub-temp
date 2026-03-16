@@ -1,0 +1,17 @@
+// base color
+$color-white: #ffffff;
+$color-black: #000000;
+$color-primary: #a65ee9;
+
+// alpha scale
+@function alpha($step) {
+	@if $step >= 0 and $step <= 10 {
+		@return $step / 20;
+	}
+	@warn "alpha step must be between 0 and 20";
+	@return 1;
+}
+
+@function color-alpha($color, $alpha) {
+	@return rgba($color: $color, $alpha: $alpha);
+}

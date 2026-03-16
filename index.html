@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>템플릿</title>
+
+		<!-- <link rel="icon" href="/favicon/favicon.png" type="image/x-icon" /> -->
+
+		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<script src="js/lib/jquery-3.7.1.min.js"></script>
+		<script defer src="js/common.js"></script>
+	</head>
+
+	<body>
+		<!-- <h1 class="visual-hidden">템플릿</h1> -->
+		<a href="#contents" class="skip-link">본문으로 건너뛰기</a>
+
+		<!-- header -->
+		<header class="header" id="header"></header>
+
+		<nav class="gnb-mo" aria-label="주요 메뉴" hidden>
+			<div class="gnb-mo-header">
+				<div class="inner">
+					<p class="title-md fw-600">Welcome!!</p>
+				</div>
+				<button type="button" class="btn-close closeMenu"><span class="visual-hidden">close</span></button>
+			</div>
+			<ul class="gnb-mo-body"></ul>
+		</nav>
+		<!--// header -->
+
+		<main id="contents" class="main">
+			<div class="content-wrap">
+				<div class="content-header">
+					<h2 class="title-md">testtttttttttttt</h2>
+				</div>
+				<div class="content-body">
+					<!-- 탭 -->
+					<section class="section">
+						<div class="sec-header">
+							<h3 class="title-sm font-secondary">탭</h3>
+						</div>
+						<div class="sec-body">
+							<div class="tab-wrap">
+								<div class="tab-list" role="tablist" aria-label="탭메뉴">
+									<button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-1">탭1</button>
+									<button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-2">탭2</button>
+									<a href="#" class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-1">탭1</a>
+									<a href="#" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-2">탭2</a>
+								</div>
+								<div class="tab-content">
+									<div id="panel-1" role="tabpanel">
+										<div class="panel-inner">
+											조선 후기에는 중앙 집권 체제가 점차 강화되면서 국왕을 중심으로 한 정치 운영 방식이 확립되었다. 이
+											시기에는 비변사를 비롯한 주요 행정 기구의 역할이 확대되었고, 이를 통해 국가 정책의 결정 과정이
+											보다 체계적으로 운영되었다. 또한 사회·경제적 변화가 가속화되면서 신분 질서와 지방 행정에도
+											점진적인 변화가 나타났으며, 이러한 흐름은 이후 근대 사회로 이행하는 과정에 중요한 배경으로
+											작용하였다.
+										</div>
+									</div>
+									<div id="panel-2" role="tabpanel">
+										<div class="panel-inner">탭내용22222</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<!--// 탭 -->
+					<!-- 아코디언 -->
+					<section class="section">
+						<div class="sec-header">
+							<h3 class="title-sm font-secondary">아코디언</h3>
+						</div>
+						<div class="sec-body">
+							<div class="ui-accordion">
+								<div class="accordion-item">
+									<button class="acc-btn" aria-expanded="false" aria-controls="acc-panel-1">
+										faq1 질문입니다질문입니다질문입니다
+									</button>
+									<div class="acc-panel" id="acc-panel-1" hidden>
+										<div class="panel-inner">
+											조선 후기에는 중앙 집권 체제가 점차 강화되면서 국왕을 중심으로 한 정치 운영 방식이 확립되었다. 이
+											시기에는 비변사를 비롯한 주요 행정 기구의 역할이 확대되었고, 이를 통해 국가 정책의 결정 과정이
+											보다 체계적으로 운영되었다. 또한 사회·경제적 변화가 가속화되면서 신분 질서와 지방 행정에도
+											점진적인 변화가 나타났으며, 이러한 흐름은 이후 근대 사회로 이행하는 과정에 중요한 배경으로
+											작용하였다.
+										</div>
+									</div>
+								</div>
+								<div class="accordion-item">
+									<button class="acc-btn" aria-expanded="false" aria-controls="acc-panel-2">
+										faq2 질문입니다질문입니다질문입니다질문입니다
+									</button>
+									<div class="acc-panel" id="acc-panel-2" hidden>
+										<div class="panel-inner">
+											조선 후기에는 중앙 집권 체제가 점차 강화되면서 국왕을 중심으로 한 정치 운영 방식이 확립되었다. 이
+											시기에는 비변사를 비롯한 주요 행정 기구의 역할이 확대되었고, 이를 통해 국가 정책의 결정 과정이
+											보다 체계적으로 운영되었다. 또한 사회·경제적 변화가 가속화되면서 신분 질서와 지방 행정에도
+											점진적인 변화가 나타났으며, 이러한 흐름은 이후 근대 사회로 이행하는 과정에 중요한 배경으로
+											작용하였다. 조선 후기에는 중앙 집권 체제가 점차 강화되면서 국왕을 중심으로 한 정치 운영 방식이
+											확립되었다. 이 시기에는 비변사를 비롯한 주요 행정 기구의 역할이 확대되었고, 이를 통해 국가 정책의
+											결정 과정이 보다 체계적으로 운영되었다. 또한 사회·경제적 변화가 가속화되면서 신분 질서와 지방
+											행정에도 점진적인 변화가 나타났으며, 이러한 흐름은 이후 근대 사회로 이행하는 과정에 중요한
+											배경으로 작용하였다. 조선 후기에는 중앙 집권 체제가 점차 강화되면서 국왕을 중심으로 한 정치 운영
+											방식이 확립되었다. 이 시기에는 비변사를 비롯한 주요 행정 기구의 역할이 확대되었고, 이를 통해 국가
+											정책의 결정 과정이 보다 체계적으로 운영되었다. 또한 사회·경제적 변화가 가속화되면서 신분 질서와
+											지방 행정에도 점진적인 변화가 나타났으며, 이러한 흐름은 이후 근대 사회로 이행하는 과정에 중요한
+											배경으로 작용하였다.
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<!--// 아코디언 -->
+					<!-- 버튼 -->
+					<section class="section">
+						<div class="sec-header">
+							<h3 class="title-sm font-secondary">버튼</h3>
+						</div>
+						<div class="sec-body">
+							<div class="btn-wrap align-left">
+								<button type="button" class="btn btn-primary openLayer" data-pop="layerPop01">팝업 열기</button>
+								<button type="button" class="btn btn-secondary openLayer" data-pop="layerPop01">팝업 열기</button>
+								<button type="button" class="btn btn-line openLayer" data-pop="layerPop">팝업 열기</button>
+							</div>
+						</div>
+					</section>
+					<!--// 버튼 -->
+					<!-- 드롭다운 -->
+					<section class="section">
+						<div class="sec-header">
+							<h3 class="title-sm font-secondary">드롭다운</h3>
+						</div>
+						<div class="sec-body">
+							<h4>디폴트</h4>
+							<div class="ui-dropdown">
+								<div class="dropdown-item">
+									<button class="dropdown-btn" aria-expanded="false" aria-controls="dropdown3">dropdown1</button>
+									<ul class="dropdown-list" id="dropdown3" hidden>
+										<li><a href="#">option00001</a></li>
+										<li><a href="#">option00002</a></li>
+										<li><a href="#">option00002</a></li>
+										<li><a href="#">option00002</a></li>
+										<li><a href="#">option00002</a></li>
+										<li><a href="#">option00003</a></li>
+									</ul>
+								</div>
+								<div class="dropdown-item">
+									<button class="dropdown-btn" aria-expanded="false" aria-controls="dropdown4">dropdown2</button>
+									<ul class="dropdown-list" id="dropdown4" hidden>
+										<li>www</li>
+										<li>ssss</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="sec-body">
+							<h4>다중오폰 ✅</h4>
+							<div class="ui-dropdown multi">
+								<div class="dropdown-item">
+									<button class="dropdown-btn" aria-expanded="false" aria-controls="dropdown1">옵션 선택</button>
+									<ul class="dropdown-list" id="dropdown1" hidden>
+										<li><a href="#">option00001</a></li>
+										<li><a href="#">option00002</a></li>
+										<li><a href="#">option00003</a></li>
+									</ul>
+								</div>
+								<div class="dropdown-item">
+									<button class="dropdown-btn" aria-expanded="false" aria-controls="dropdown2">옵션 선택2</button>
+									<ul class="dropdown-list" id="dropdown2" hidden>
+										<li><a href="#">option00001</a></li>
+										<li><a href="#">option00002</a></li>
+										<li><a href="#">option00003</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</section>
+					<!--// 드롭다운 -->
+					<!-- 테이블 -->
+					<section class="section">
+						<div class="sec-header">
+							<h3 class="title-sm font-secondary">테이블</h3>
+						</div>
+						<div class="sec-body">
+							<div class="table-wrap">
+								<table class="table">
+									<caption>
+										테이블에 대한 설명
+									</caption>
+									<thead>
+										<tr>
+											<th>번호</th>
+											<th>이름</th>
+											<th>이메일</th>
+											<th>전화번호</th>
+											<th>가입일</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td data-label="번호">1</td>
+											<td data-label="이름">홍길동</td>
+											<td data-label="이메일">hong@example.com</td>
+											<td data-label="전화번호">010-1234-5678</td>
+											<td data-label="가입일">2026-03-01</td>
+										</tr>
+										<tr>
+											<td data-label="번호">2</td>
+											<td data-label="이름">김영희</td>
+											<td data-label="이메일">kim@example.com</td>
+											<td data-label="전화번호">010-9876-5432</td>
+											<td data-label="가입일">2026-03-02</td>
+										</tr>
+										<tr>
+											<td data-label="번호">3</td>
+											<td data-label="이름">김영희</td>
+											<td data-label="이메일">kim@example.com</td>
+											<td data-label="전화번호">010-9876-5432</td>
+											<td data-label="가입일">2026-03-02</td>
+										</tr>
+										<tr>
+											<td data-label="번호">4</td>
+											<td data-label="이름">김영희</td>
+											<td data-label="이메일">kim@example.com</td>
+											<td data-label="전화번호">010-9876-5432</td>
+											<td data-label="가입일">2026-03-02</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</section>
+					<!--// 테이블 -->
+				</div>
+				<div class="content-footer sticky">
+					<div class="btn-wrap">
+						<button type="button" class="btn btn-primary w-full h-48 openLayer" data-pop="layerPop">
+							바텀시트 열기
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- 팝업 -->
+			<div id="layerPop01" class="layer-popup" role="dialog" aria-modal="true" hidden>
+				<div class="popup-container">
+					<div class="popup-wrapper">
+						<div class="popup-header">
+							<h5 class="text-lg">제목입니다.</h5>
+							<button type="button" class="btn-close closeLayer"><span class="visual-hidden">close</span></button>
+						</div>
+						<div class="popup-body">
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<br /><br />
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<div class="btn-wrap">
+								<button type="button" class="btn btn-line openLayer" data-pop="layerPop02">layerPop02 열기</button>
+								<button type="button" class="btn btn-line" onclick="layerPop.openlayer('layerPop02')">
+									layerPop02 열기 (호출형)
+								</button>
+							</div>
+						</div>
+						<div class="popup-footer">
+							<div class="btn-wrap">
+								<button type="button" class="btn btn-primary closeLayer">확인</button>
+								<button type="button" class="btn btn-secondary closeLayer">닫기</button>
+							</div>
+							<!-- <button type="button" class="btn btn-secondary">닫기</button> -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 팝업 2중-->
+			<div id="layerPop02" class="layer-popup alert" role="dialog" aria-modal="true" hidden>
+				<div class="popup-container">
+					<div class="popup-wrapper">
+						<div class="popup-header">
+							<h5 class="text-lg">알림</h5>
+							<button type="button" class="btn-close closeLayer"><span class="visual-hidden">close</span></button>
+						</div>
+						<div class="popup-body">
+							<p>이 내용은 확인되었습니다.</p>
+						</div>
+						<div class="popup-footer">
+							<div class="btn-wrap align-right">
+								<button type="button" class="btn btn-primary closeLayer">닫기</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 팝업 2중-->
+			<div id="layerPop03" class="layer-popup" role="dialog" aria-modal="true" hidden>
+				<div class="popup-container">
+					<div class="popup-wrapper">
+						<div class="popup-header">
+							<h5 class="text-lg">알림</h5>
+							<button type="button" class="btn-close closeLayer"><span class="visual-hidden">close</span></button>
+						</div>
+						<div class="popup-body">
+							<p>삭제하시겠습니까????????</p>
+						</div>
+						<div class="popup-footer">
+							<div class="btn-wrap align-right">
+								<button type="button" class="btn btn-primary openLayer" data-pop="layerPop02">확인</button>
+								<button type="button" class="btn btn-secondary closeLayer">닫기</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 사이트맵-->
+			<div id="sitemap" class="layer-popup sitemap" role="dialog" aria-modal="true" hidden>
+				<div class="popup-container">
+					<div class="popup-wrapper">
+						<div class="popup-header">
+							<h5 class="text-lg">알림</h5>
+							<button type="button" class="btn-close closeLayer"><span class="visual-hidden">close</span></button>
+						</div>
+						<div class="popup-body">sitemap</div>
+						<div class="popup-footer">
+							<div class="btn-wrap align-right">
+								<button type="button" class="btn btn-primary closeLayer">닫기</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="layerPop" class="layer-popup bottomsheet scroll" role="dialog" aria-modal="true" hidden>
+				<div class="popup-container">
+					<div class="popup-wrapper">
+						<div class="popup-header">
+							<h5 class="text-lg">
+								제목이 길어질 수 있습니다 <br />
+								제목이 길어질 수 있습니다
+							</h5>
+							<button type="button" class="btn-close closeLayer"><span class="visual-hidden">close</span></button>
+						</div>
+						<div class="popup-body">
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+							<p>내용입니다</p>
+						</div>
+						<div class="popup-footer">
+							<div class="btn-wrap">
+								<button type="button" class="btn btn-primary openLayer" data-pop="layerPop03">확인</button>
+								<button type="button" class="btn btn-secondary closeLayer">닫기</button>
+							</div>
+							<!-- <button type="button" class="btn btn-secondary">닫기</button> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<!--// 팝업 -->
+
+		<!-- 그리드 레이아웃 -->
+		<!-- <div class="grid-container">
+			<div class="grid-item"></div>
+			<div class="grid-item"></div>
+			<div class="grid-item"></div>
+			<div class="grid-item"></div>
+			<div class="grid-item"></div>
+			<div class="grid-item"></div>
+			<div class="grid-item"></div>
+			<div class="grid-item"></div>
+		</div> -->
+
+		<!-- footer -->
+		<footer class="footer" id="footer"></footer>
+		<!--// footer -->
+	</body>
+	<script>
+		$(document).ready(function () {
+			$("#header").load("/pages/partial/_header.html", function () {
+				headerInit();
+			});
+			$("#footer").load("/pages/partial/_footer.html", function () {});
+		});
+	</script>
+</html>

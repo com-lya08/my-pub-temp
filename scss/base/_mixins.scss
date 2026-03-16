@@ -1,0 +1,145 @@
+@mixin flex-center() {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+@mixin flex-col-center() {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+@mixin sr-only {
+	position: absolute;
+	width: 0.1rem;
+	height: 0.1rem;
+	padding: 0;
+	margin: -0.1rem;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+@mixin single-line-ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+@mixin two-line-ellipsis {
+	display: -webkit-box;
+	line-clamp: 2;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+@mixin background {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+@mixin background-size($size) {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: $size;
+}
+
+
+// transition 기본
+@mixin transition-base($duration: 0.4s) {
+	transition:
+		opacity $duration ease,
+		transform $duration ease,
+		height $duration ease,
+		max-height $duration ease,
+		visibility $duration ease;
+}
+
+// padding / margin까지 필요한 경우
+@mixin transition-full($duration: 0.4s) {
+	transition:
+		opacity $duration ease,
+		transform $duration ease,
+		height $duration ease,
+		max-height $duration ease,
+		padding $duration ease,
+		margin $duration ease,
+		visibility $duration ease,
+}
+
+// 기본 hidden
+@mixin hidden($duration: 0.4s) {
+	opacity: 0;
+	visibility: hidden;
+	@include transition-full($duration);
+}
+
+@mixin show {
+	opacity: 1;
+	visibility: visible;
+}
+
+// fade
+@mixin fade-hidden($duration: 0.4s) {
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(0.4rem);
+	@include transition-base($duration);
+}
+
+@mixin fade-show {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+// scale
+@mixin scale-hidden($duration: 0.4s) {
+	opacity: 0;
+	visibility: hidden;
+	transform: scaleY(0);
+	transform-origin: top;
+	@include transition-base($duration);
+}
+
+@mixin scale-show {
+	opacity: 1;
+	visibility: visible;
+	transform: scaleY(1);
+}
+
+@mixin arrow-icon($deg) {
+	width: 1rem; /* 화살표 길이 */
+	height: 1rem; /* 화살표 높이 */
+	border-left-width: 0px;
+	border-top-width: 0px;
+	border-right-width: 2px;
+	border-bottom-width: 2px;
+	border-style: solid;
+	border-color: rgba(var(--color-bg-rgb), alpha(6));
+	border-bottom-right-radius: 2px;
+	transform: rotate($deg);
+	transition: transform 0.4s;
+}
+
+@mixin gradient-bg() {
+	background: linear-gradient(
+		180deg,
+		rgba(var(--color-rgb), 0) 0%,
+		rgba(var(--color-rgb), 0.32) 7%,
+		rgba(var(--color-rgb), 0.48) 9%,
+		rgba(var(--color-rgb), 0.64) 13%,
+		rgba(var(--color-rgb), 0.76) 17%,
+		rgba(var(--color-rgb), 0.88) 21%,
+		rgba(var(--color-rgb), 0.94) 24%,
+		rgba(var(--color-rgb), 0.96) 27%,
+		rgba(var(--color-rgb), 0.98) 32%,
+		rgba(var(--color-rgb), 1) 36%,
+		rgba(var(--color-rgb), 1) 74%
+	);
+}

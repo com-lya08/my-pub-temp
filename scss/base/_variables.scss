@@ -1,0 +1,78 @@
+// 기본 폰트 스택
+$font-primary: "SUIT", "Noto Sans", "Apple SD Gothic Neo", "Helvetica", "Arial", sans-serif;
+$font-secondary: "Pretendard", "Noto Sans", "Apple SD Gothic Neo", "Helvetica", "Arial", sans-serif;
+
+:root {
+	--text-size-base: 1.6rem;
+	--text-size-sm: 1.4rem;
+	--text-size-md: 1.8rem;
+	--text-size-lg: 2rem;
+	--text-size-xl: 2.4rem;
+	--text-size-xxl: 3.2rem;
+	--text-size-3xl: 4rem;
+
+	--title-size-sm: 2.6rem;
+	--title-size-md: 4rem;
+	--title-size-lg: 5rem;
+	--title-size-xl: 6rem;
+
+	--header-height: 6rem;
+}
+
+@media (max-width: 768px) {
+	:root {
+		--text-size-base: 1.5rem;
+		--text-size-sm: 1.4rem;
+		--text-size-md: 1.6rem;
+		--text-size-lg: 1.8rem;
+		--text-size-xl: 1.8rem;
+		--text-size-xxl: 2rem;
+		--text-size-3xl: 2.4rem;
+
+		--title-size-sm: 2rem;
+		--title-size-md: 2.6rem;
+		--title-size-lg: 3.2rem;
+		--title-size-xl: 4rem;
+
+		--header-height: 5rem;
+	}
+}
+
+:root {
+	color-scheme: light dark;
+	--color-rgb: 255, 255, 255;
+	--color-bg-rgb: 0, 0, 0;
+	--color-text: #333;
+	--color-gray-00: #ffffff;
+	--color-gray-10: #f8f9fa;
+	--color-gray-20: #e9ecef;
+	--color-gray-30: #dee2e6;
+	--color-gray-40: #ced4da;
+	--color-gray-50: #adb5bd;
+	--color-gray-60: #6c757d;
+	--color-gray-70: #495057;
+	--color-gray-80: #343a40;
+	--color-gray-90: #212529;
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		color-scheme: dark;
+		--color-rgb: 40, 40, 40;
+		--color-bg-rgb: 255, 255, 255;
+		--color-text: #fff;
+		--color-gray-00: #000000;
+		--color-gray-10: #212529;
+		--color-gray-20: #343a40;
+		--color-gray-30: #495057;
+		--color-gray-40: #6c757d;
+		--color-gray-50: #adb5bd;
+		--color-gray-60: #ced4da;
+		--color-gray-70: #dee2e6;
+		--color-gray-80: #e9ecef;
+		--color-gray-90: #f8f9fa;
+	}
+}
+
+.w-full {
+	width: 100% !important;
+}

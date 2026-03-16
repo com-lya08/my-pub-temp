@@ -1,0 +1,61 @@
+.table {
+	caption {
+		@include sr-only();
+	}
+	width: 100%;
+	border-collapse: collapse;
+	th,
+	td {
+		padding: 1rem;
+		border-left: 1px solid var(--color-gray-40);
+		text-align: left;
+		&:first-child {
+			border-left: none;
+		}
+	}
+
+	th {
+		background: var(--color-gray-10);
+	}
+
+	tr:nth-child(even) {
+		background: var(--color-gray-20);
+	}
+	@media (max-width: 768px) {
+		display: block;
+		thead,
+		tbody,
+		th,
+		td,
+		tr {
+			display: block;
+			width: 100%;
+		}
+
+		thead {
+			display: none; /* 헤더 숨김 */
+		}
+
+		tr {
+			margin-bottom: 1.5rem;
+			border-radius: 1rem;
+			padding: 1rem;
+			background: var(--color-gray-20);
+		}
+
+		td {
+			border: none;
+			position: relative;
+			padding-left: 50%;
+		}
+
+		td::before {
+			content: attr(data-label);
+			position: absolute;
+			left: 1.5rem;
+			top: 1.2rem;
+			font-weight: bold;
+			white-space: nowrap;
+		}
+	}
+}

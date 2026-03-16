@@ -1,0 +1,57 @@
+/* typography */
+/* font */
+.font-primary {
+	font-family: $font-primary;
+}
+.font-secondary {
+	font-family: $font-secondary;
+}
+
+/* title */
+.title-sm {
+	font-size: var(--title-size-sm);
+}
+.title-md {
+	font-size: var(--title-size-md);
+}
+.title-lg {
+	font-size: var(--title-size-lg);
+}
+.title-xl {
+	font-size: var(--title-size-xl);
+}
+
+/* text */
+.text-sm {
+	font-size: var(--text-size-sm);
+}
+.text-md {
+	font-size: var(--text-size-md);
+}
+.text-lg {
+	font-size: var(--text-size-lg);
+}
+.text-xl {
+	font-size: var(--text-size-xl);
+}
+.text-xxl {
+	font-size: var(--text-size-xxl);
+}
+.text-3xl {
+	font-size: var(--text-size-3xl);
+}
+
+/* font weight */
+.fw-400 {
+	font-weight: 400;
+}
+.fw-500 {
+	font-weight: 500;
+}
+.fw-600 {
+	font-weight: 600;
+}
+.fw-700 {
+	font-weight: 700;
+}
+/*// typography */

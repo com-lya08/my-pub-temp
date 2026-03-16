@@ -1,0 +1,116 @@
+/* popup */
+.layer-popup {
+	position: fixed;
+	inset: 0;
+	padding: 3rem;
+	@include hidden(0.2s);
+	// transform: scale(0);
+	transform-origin: center;
+	@include flex-center();
+	.popup-container {
+		width: 100%;
+		height: auto;
+		max-width: 55rem;
+		max-height: calc(100vh - 20rem);
+		border-radius: 2rem;
+		background-color: var(--color-gray-10);
+		box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.1);
+	}
+	.popup-wrapper {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+		max-height: inherit;
+	}
+	.popup-header {
+		position: relative;
+		padding: 2rem 6rem 2rem 2rem;
+	}
+	.popup-body {
+		flex: 1;
+		padding: 2rem;
+		overflow-y: auto;
+		max-height: 100%;
+	}
+	.popup-footer {
+		padding: 2rem;
+	}
+	&[hidden] {
+		/* [hidden] 속성을 덮어버릴 수 있음(여기서는 show/hide를 오파시티로 해서 안보이는거지 실제론 없어지지 않음, 그래서 포커스 안잡힐 수 있음)*/
+		display: none;
+	}
+	&.show {
+		@include show();
+		// transform: scale(1);
+	}
+	&.alert {
+		.popup-container {
+			max-width: 30rem;
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		&.bottomsheet {
+			left: 0;
+			bottom: 0;
+			right: unset;
+			top: unset;
+			padding: 0;
+			width: 100%;
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(100%);
+			transition: transform 0.4s;
+			will-change: transform;
+
+			.popup-container {
+				height: 100%;
+				max-width: 100%;
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+				box-shadow: none;
+			}
+
+			.popup-header {
+				h5 {
+					transition: transform 0.4s ease;
+					transform-origin: top left;
+				}
+				&.shrink {
+					h5 {
+						@include two-line-ellipsis();
+						transform: scale(0.9);
+					}
+				}
+			}
+
+			&.scroll {
+				.popup-container {
+					max-height: 50vh;
+					transition: max-height 0.4s ease;
+				}
+				&.is-expanded {
+					.popup-container {
+						max-height: calc(100vh - 5rem);
+					}
+				}
+			}
+
+			&.show {
+				transform: translateY(0);
+			}
+		}
+	}
+}
+
+.layer-dimmed {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.6);
+	@include hidden();
+	&.show {
+		@include show();
+	}
+}
+/*// popup */

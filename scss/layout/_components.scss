@@ -1,0 +1,72 @@
+/* components */
+/* tab */
+.tab-wrap {
+	.tab-list {
+		display: flex;
+		gap: 1.2rem;
+		flex-wrap: wrap;
+	}
+	.tab-content {
+		margin-top: 1.2rem;
+		background-color: rgba(var(--color-bg-rgb), alpha(1));
+		padding: 1.2rem;
+		border-radius: 1rem;
+	}
+	[role="tabpanel"] {
+		@include fade-hidden();
+		&.show {
+			@include fade-show();
+		}
+	}
+}
+
+/* accordion */
+.ui-accordion {
+	.accordion-item {
+		& + .accordion-item {
+			margin-top: 1.2rem;
+		}
+	}
+	.acc-panel {
+		margin-top: 1.2rem;
+		background-color: rgba(var(--color-bg-rgb), alpha(1));
+		padding: 1.2rem;
+		border-radius: 1rem;
+		transition: all 0.2s ease;
+		@include fade-hidden();
+		&.show {
+			@include fade-show();
+		}
+	}
+}
+
+/* dropdown */
+.ui-dropdown {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2rem;
+	margin-top: 1.2rem;
+	.dropdown-item {
+		position: relative;
+		.dropdown-list {
+			position: absolute;
+			z-index: 1;
+			background-color: var(--color-gray-10);
+			border: 1px solid var(--color-gray-20);
+			min-width: 100%;
+			// max-width: 100%;
+			border-radius: 1rem;
+			max-height: none;
+			@include hidden();
+			&.show {
+				@include show();
+				max-height: 20rem;
+				overflow-y: auto;
+			}
+			li {
+				padding: 0.8rem 1.2rem;
+			}
+		}
+	}
+}
+/*// components */
