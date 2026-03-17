@@ -229,11 +229,12 @@ const layerPop = (function ($) {
 		});
 		if (!$(".layer-dimmed").length) {
 			$("body").append('<div class="layer-dimmed"></div>');
+			updateDimHeight();
 		}
-		setTimeout(() => {
-			$(".layer-dimmed").css("z-index", zIndex - 1);
-			$(".layer-dimmed").addClass("show");
-		});
+		$(".layer-dimmed")
+			.css("z-index", zIndex - 1)
+			.addClass("show");
+
 		bodyScroll.lock();
 
 		const scrollPoint = 40;
@@ -259,18 +260,15 @@ const layerPop = (function ($) {
 		$dialog.one("transitionend", () => {
 			$dialog.css("z-index", ""); // z-index는 transition 중에 절대 건드리지 않는게 안정적
 			$dialog.attr("hidden", true);
-
-			const $dim = $(".layer-dimmed");
-
-			if ($(".layer-popup.show").length === 0) {
-				$dim.removeClass("show");
-				$dim.one("transitionend", () => {
-					$dim.remove();
-				});
-			} else {
-				$dim.css("z-index", zIndex - 1);
-			}
 		});
+
+		const $dim = $(".layer-dimmed");
+		if ($(".layer-popup.show").length === 0) {
+			$dim.removeClass("show");
+			$dim.remove();
+		} else {
+			$dim.css("z-index", zIndex - 1);
+		}
 
 		bodyScroll.unLock();
 
@@ -433,7 +431,9 @@ $(document).ready(function () {
  * 공통함수
  * ============================================================================ */
 function getFocusable($el) {
-	return $el.find('a[href], button:not([disabled]), input:not([disabled]), textarea, select, [tabindex]:not([tabindex="-1"])');
+	return $el.find(
+		'a[href], button:not([disabled]), input:not([disabled]), textarea, select, [tabindex]:not([tabindex="-1"])',
+	);
 }
 
 function trapFocus(e) {
@@ -496,6 +496,11 @@ function isSafari() {
 	const isIOS = /iPhone|iPad|iPod/.test(ua);
 
 	return isSafari || isIOS;
+}
+
+function updateDimHeight() {
+	var height = Math.max($("body")[0].scrollHeight, $("html")[0].scrollHeight);
+	$(".layer-dimmed").height(height);
 }
 
 // function closeSitemapIfMobile() {

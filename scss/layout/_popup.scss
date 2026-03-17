@@ -105,9 +105,17 @@
 }
 
 .layer-dimmed {
-	position: fixed;
-	inset: 0;
-	background: rgba(0, 0, 0, 0.6);
+	// position: fixed;
+	// inset: 0;
+	// height: 200dvh;
+	position: absolute; // safari 하단 주소창 영역 깜빡임(딤드 레이어 변환이 부드럽지 않음) 현상 해결
+	top: 0;
+	left: 0;
+	width: 100%;
+	// height: 200vh;
+	background: rgba(0, 0, 0, 0.5);
+	will-change: opacity;
+	// transform: translateZ(0);
 	@include hidden();
 	&.show {
 		@include show();
