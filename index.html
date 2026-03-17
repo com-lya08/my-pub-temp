@@ -125,7 +125,7 @@
 							<div class="btn-wrap align-left">
 								<button type="button" class="btn btn-primary openLayer" data-pop="layerPop01">팝업 열기</button>
 								<button type="button" class="btn btn-secondary openLayer" data-pop="layerPop01">팝업 열기</button>
-								<button type="button" class="btn btn-line openLayer" data-pop="layerPop">팝업 열기</button>
+								<button type="button" class="btn btn-line openLayer" data-pop="layerPop01">팝업 열기</button>
 							</div>
 						</div>
 					</section>
@@ -239,7 +239,7 @@
 				</div>
 				<div class="content-footer">
 					<div class="btn-wrap">
-						<button type="button" class="btn btn-primary w-full h-48 openLayer" data-pop="layerPop01">
+						<button type="button" class="btn btn-primary w-full h-48 openLayer" data-pop="layerPop">
 							바텀시트 열기
 						</button>
 					</div>
@@ -422,10 +422,10 @@
 	</body>
 	<script>
 		$(document).ready(function () {
-			$("#header").load("/pages/partial/_header.html", function () {
+			$("#header").load("pages/partial/_header.html", function () {
 				headerInit();
 			});
-			$("#footer").load("/pages/partial/_footer.html", function () {});
+			$("#footer").load("pages/partial/_footer.html", function () {});
 		});
 	</script>
 </html>
