@@ -114,7 +114,7 @@
 			font-weight: 500;
 			background-color: rgba(var(--color-scheme-rvs-rgb), alpha(1));
 			border-radius: 1rem;
-			@include hidden(0.2s);
+			@include hidden();
 			padding: 0;
 			margin-top: 0;
 			height: 0;
