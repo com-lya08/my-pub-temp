@@ -81,6 +81,7 @@
 	max-width: 40rem;
 	height: 100%;
 	@include hidden();
+	opacity: 1;
 	transform: translateX(100%);
 	&[hidden] {
 		/* [hidden] 속성을 덮어버릴 수 있음(여기서는 show/hide를 오파시티로 해서 안보이는거지 실제론 없어지지 않음, 그래서 포커스 안잡힐 수 있음)*/
