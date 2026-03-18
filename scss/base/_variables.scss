@@ -40,36 +40,36 @@ $font-secondary: "Pretendard", "Noto Sans", "Apple SD Gothic Neo", "Helvetica", 
 
 :root {
 	color-scheme: light dark;
-	--color-rgb: 255, 255, 255;
-	--color-bg-rgb: 0, 0, 0;
+	--color-scheme-rgb: 255, 255, 255;
+	--color-scheme-rvs-rgb: 15, 15, 14;
 	--color-text: #333;
 	--color-gray-00: #ffffff;
-	--color-gray-10: #f8f9fa;
-	--color-gray-20: #e9ecef;
-	--color-gray-30: #dee2e6;
-	--color-gray-40: #ced4da;
-	--color-gray-50: #adb5bd;
-	--color-gray-60: #6c757d;
-	--color-gray-70: #495057;
-	--color-gray-80: #343a40;
-	--color-gray-90: #212529;
+	--color-gray-10: #f7f7f5;
+	--color-gray-20: #efefec;
+	--color-gray-30: #e5e5e1;
+	--color-gray-40: #d6d6d2;
+	--color-gray-50: #c2c2bd;
+	--color-gray-60: #a8a8a3;
+	--color-gray-70: #8c8c87;
+	--color-gray-80: #5c5c57;
+	--color-gray-90: #2c2c2a;
 }
 @media (prefers-color-scheme: dark) {
 	:root {
 		color-scheme: dark;
-		--color-rgb: 40, 40, 40;
-		--color-bg-rgb: 255, 255, 255;
+		--color-scheme-rgb: 40, 40, 40;
+		--color-scheme-rvs-rgb: 255, 255, 255;
 		--color-text: #fff;
-		--color-gray-00: #000000;
-		--color-gray-10: #212529;
-		--color-gray-20: #343a40;
-		--color-gray-30: #495057;
-		--color-gray-40: #6c757d;
-		--color-gray-50: #adb5bd;
-		--color-gray-60: #ced4da;
-		--color-gray-70: #dee2e6;
-		--color-gray-80: #e9ecef;
-		--color-gray-90: #f8f9fa;
+		--color-gray-00: #0f0f0e;
+		--color-gray-10: #161615;
+		--color-gray-20: #1d1d1b;
+		--color-gray-30: #262624;
+		--color-gray-40: #30302e;
+		--color-gray-50: #3f3f3c;
+		--color-gray-60: #5a5a57;
+		--color-gray-70: #7a7a76;
+		--color-gray-80: #a3a39f;
+		--color-gray-90: #e5e5e0;
 	}
 }
 

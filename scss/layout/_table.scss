@@ -15,11 +15,11 @@
 	}
 
 	th {
-		background: var(--color-gray-10);
+		background: rgba(var(--color-scheme-rgb), alpha(25));
 	}
 
 	tr:nth-child(even) {
-		background: var(--color-gray-20);
+		background: var(--color-gray-10);
 	}
 	@media (max-width: 768px) {
 		display: block;
@@ -40,7 +40,7 @@
 			margin-bottom: 1.5rem;
 			border-radius: 1rem;
 			padding: 1rem;
-			background: var(--color-gray-20);
+			background: var(--color-gray-00);
 		}
 
 		td {

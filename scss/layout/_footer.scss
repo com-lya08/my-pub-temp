@@ -1,0 +1,28 @@
+
+.footer {
+	// margin-top: 2rem;
+	background-color: var(--color-gray-10);
+	.footer-inner {
+		display: grid;
+		grid-template-columns: minmax(10rem, 20rem) 1fr;
+		max-width: 132rem;
+		margin: 0 auto;
+		padding: 4rem 2rem;
+		// background-color: var(--color-gray-10);
+		.inner-right .footer-menu {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+			gap: 2rem;
+			.sub-menu {
+				margin-top: 2rem;
+				li {
+					font-size: var(--text-size-sm);
+					color: var(--color-gray-50);
+				}
+				li + li {
+					margin-top: 1.2rem;
+				}
+			}
+		}
+	}
+}

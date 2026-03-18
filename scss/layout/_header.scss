@@ -75,7 +75,7 @@
 	top: 0;
 	right: 0;
 	z-index: 11;
-	background-color: rgba(var(--color-bg-rgb), alpha(1));
+	background-color: rgba(var(--color-scheme-rvs-rgb), alpha(1));
 	backdrop-filter: blur(10px);
 	width: 100%;
 	max-width: 40rem;
@@ -112,7 +112,7 @@
 		.sub-menu {
 			font-size: 1.6rem;
 			font-weight: 500;
-			background-color: rgba(var(--color-bg-rgb), alpha(1));
+			background-color: rgba(var(--color-scheme-rvs-rgb), alpha(1));
 			border-radius: 1rem;
 			@include hidden();
 			padding: 0;

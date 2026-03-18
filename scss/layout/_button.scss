@@ -24,7 +24,7 @@
 		color: $color-white;
 	}
 	&.btn-secondary {
-		background-color: rgba(var(--color-bg-rgb), alpha(1));
+		background-color: rgba(var(--color-scheme-rvs-rgb), alpha(1));
 		color: var(--color-text);
 	}
 	&.btn-line {
@@ -41,13 +41,13 @@
 /** 탭 */
 .tab-btn {
 	@extend .btn;
-	background-color: rgba(var(--color-bg-rgb), alpha(1));
+	background-color: rgba(var(--color-scheme-rvs-rgb), alpha(1));
 	min-height: 4.2rem;
 	border-radius: 1rem;
 	transition: background-color 0.2s ease-in-out;
 	&:hover,
 	&.active {
-		background-color: rgba($color-primary, alpha(2));
+		background-color: rgba($color-primary, alpha(5));
 		color: $color-primary;
 	}
 	&.active {
@@ -78,7 +78,7 @@
 /** 드롭다운 */
 .dropdown-btn {
 	@extend .btn;
-	background-color: rgba(var(--color-bg-rgb), alpha(1));
+	background-color: rgba(var(--color-scheme-rvs-rgb), alpha(1));
 }
 /** 햅버거 */
 .menu-icon-btn {

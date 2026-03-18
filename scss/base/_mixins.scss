@@ -121,7 +121,7 @@
 	border-right-width: 2px;
 	border-bottom-width: 2px;
 	border-style: solid;
-	border-color: rgba(var(--color-bg-rgb), alpha(6));
+	border-color: rgba(var(--color-scheme-rvs-rgb), alpha(6));
 	border-bottom-right-radius: 2px;
 	transform: rotate($deg);
 	transition: transform 0.4s;
@@ -130,16 +130,16 @@
 @mixin gradient-bg() {
 	background: linear-gradient(
 		180deg,
-		rgba(var(--color-rgb), 0) 0%,
-		rgba(var(--color-rgb), 0.32) 7%,
-		rgba(var(--color-rgb), 0.48) 9%,
-		rgba(var(--color-rgb), 0.64) 13%,
-		rgba(var(--color-rgb), 0.76) 17%,
-		rgba(var(--color-rgb), 0.88) 21%,
-		rgba(var(--color-rgb), 0.94) 24%,
-		rgba(var(--color-rgb), 0.96) 27%,
-		rgba(var(--color-rgb), 0.98) 32%,
-		rgba(var(--color-rgb), 1) 36%,
-		rgba(var(--color-rgb), 1) 74%
+		rgba(var(--color-scheme-rgb), 0) 0%,
+		rgba(var(--color-scheme-rgb), 0.32) 7%,
+		rgba(var(--color-scheme-rgb), 0.48) 9%,
+		rgba(var(--color-scheme-rgb), 0.64) 13%,
+		rgba(var(--color-scheme-rgb), 0.76) 17%,
+		rgba(var(--color-scheme-rgb), 0.88) 21%,
+		rgba(var(--color-scheme-rgb), 0.94) 24%,
+		rgba(var(--color-scheme-rgb), 0.96) 27%,
+		rgba(var(--color-scheme-rgb), 0.98) 32%,
+		rgba(var(--color-scheme-rgb), 1) 36%,
+		rgba(var(--color-scheme-rgb), 1) 74%
 	);
 }
