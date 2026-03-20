@@ -265,7 +265,9 @@ const layerPop = (function ($) {
 		const $dim = $(".layer-dimmed");
 		if ($(".layer-popup.show").length === 0) {
 			$dim.removeClass("show");
-			$dim.remove();
+			$dim.one("transitionend", () => {
+				$dim.remove();
+			});
 		} else {
 			$dim.css("z-index", zIndex - 1);
 		}
@@ -398,6 +400,7 @@ function headerInit() {
 
 	// ---------------- RESIZE ----------------
 	$(window).on("resize", function () {
+		$header.removeAttr("style");
 		if (window.innerWidth > 768) {
 			const $gnbMo = $(".gnb-mo.show");
 			if ($gnbMo.length) {
@@ -431,9 +434,7 @@ $(document).ready(function () {
  * 공통함수
  * ============================================================================ */
 function getFocusable($el) {
-	return $el.find(
-		'a[href], button:not([disabled]), input:not([disabled]), textarea, select, [tabindex]:not([tabindex="-1"])',
-	);
+	return $el.find('a[href], button:not([disabled]), input:not([disabled]), textarea, select, [tabindex]:not([tabindex="-1"])');
 }
 
 function trapFocus(e) {

@@ -3,15 +3,25 @@
 	background-color: var(--color-gray-10);
 	.footer-inner {
 		display: grid;
-		grid-template-columns: minmax(10rem, 20rem) 1fr;
+		grid-template-columns: minmax(10rem, 24rem) 1fr;
+		gap: 2rem;
 		max-width: 132rem;
 		margin: 0 auto;
 		padding: 4rem 2rem;
 		// background-color: var(--color-gray-10);
+		.inner-left {
+			height: 4rem;
+			line-height: 4rem;
+			background-color: rgb(47, 223, 164);
+			text-align: center;
+			font-size: var(--text-size-lg);
+		}
 		.inner-right .footer-menu {
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+			grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+			justify-content: end;
 			gap: 2rem;
+			text-align: center;
 			.sub-menu {
 				margin-top: 2rem;
 				li {
@@ -22,6 +32,9 @@
 					margin-top: 1.2rem;
 				}
 			}
+		}
+		@media (max-width: 480px) {
+			grid-template-columns: 1fr;
 		}
 	}
 }

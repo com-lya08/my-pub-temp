@@ -67,6 +67,7 @@
 	@include scale-hidden();
 	background-color: rgba(var(--color-gray-00), alpha(1));
 	backdrop-filter: blur(10px);
+	box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
 }
 
 .gnb-mo {
@@ -114,7 +115,7 @@
 			font-weight: 500;
 			background-color: rgba(var(--color-scheme-rvs-rgb), alpha(1));
 			border-radius: 1rem;
-			@include hidden();
+			@include hidden(0.2s);
 			padding: 0;
 			margin-top: 0;
 			height: 0;
