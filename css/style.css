@@ -377,7 +377,6 @@ html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
   height: 100%;
-  min-width: 30rem;
 }
 
 body {
@@ -387,6 +386,7 @@ body {
   font-family: "SUIT", "Noto Sans", "Apple SD Gothic Neo", "Helvetica", "Arial", sans-serif;
   letter-spacing: -0.04em;
   height: 100%;
+  min-width: 26rem;
 }
 
 .skip-link {
