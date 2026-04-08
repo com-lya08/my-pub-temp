@@ -893,6 +893,9 @@ body {
     text-overflow: ellipsis;
     transform: scale(0.9);
   }
+  .layer-popup.bottomsheet .popup-footer {
+    padding-bottom: 4rem;
+  }
   .layer-popup.bottomsheet.scroll .popup-container {
     max-height: 50vh;
     transition: max-height 0.4s ease;
