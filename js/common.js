@@ -278,6 +278,26 @@ const layerPop = (function ($) {
 		if (prevFocus && typeof prevFocus.focus === "function") prevFocus.focus();
 	}
 
+	function closeAllLayers() {
+		const $openDialogs = $(".layer-popup.show");
+
+		if (!$openDialogs.length) return;
+
+		// 위에 쌓인 것부터 닫는 게 안전 (z-index 순서 고려)
+		$($openDialogs.get().reverse()).each(function () {
+			closelayer($(this));
+		});
+
+		const $dim = $(".layer-dimmed");
+		if ($dim.length) {
+			$dim.removeClass("show");
+			$dim.remove();
+		}
+
+		bodyScroll.unLock();
+		focusStack = [];
+	}
+
 	function bindEvents() {
 		$(document)
 			.on("click", ".openLayer", function () {
@@ -299,6 +319,7 @@ const layerPop = (function ($) {
 		init,
 		openlayer,
 		closelayer,
+		closeAllLayers,
 		focusStack,
 	};
 })(jQuery);
