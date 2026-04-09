@@ -146,7 +146,6 @@ textarea,
 select,
 button {
   font: inherit;
-  color: inherit;
   letter-spacing: inherit;
   background-color: transparent;
   border-radius: 0;
