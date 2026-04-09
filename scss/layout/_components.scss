@@ -39,7 +39,7 @@
 		transition:
 			transform 0.2s ease,
 			visibility 0.2s ease;
-		// @include fade-hidden();
+		// @include fade-hidden(); // jquery slide랑 충돌
 		&.show {
 			// @include fade-show();
 			visibility: visible;

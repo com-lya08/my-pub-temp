@@ -241,6 +241,10 @@ address {
 }
 
 /* 11. Hidden */
+[hidden] {
+  display: none;
+}
+
 /* 12. Accessibility */
 :focus-visible,
 input:focus-visible,

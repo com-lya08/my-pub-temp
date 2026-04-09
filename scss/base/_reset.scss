@@ -235,9 +235,9 @@ address {
 }
 
 /* 11. Hidden */
-// [hidden] {
-// 	display: none !important;
-// }
+[hidden] {
+	display: none;
+}
 
 /* 12. Accessibility */
 :focus-visible ,

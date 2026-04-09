@@ -73,7 +73,6 @@ const accordion = (function ($) {
 			.toggleClass("active", expand);
 
 		// jquery 슬라이드효과
-		$panel.removeAttr("hidden");
 		if (expand) {
 			$panel.stop(true, true).slideDown(200, function(){
 				$panel.addClass("show")
