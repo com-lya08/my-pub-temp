@@ -63,6 +63,7 @@ const tab = (function ($) {
 const accordion = (function ($) {
 	function setAccordion($btn, expand) {
 		const panelId = $btn.attr("aria-controls");
+		const $panel = $("#" + panelId);
 
 		$btn
 			.attr({
@@ -71,21 +72,32 @@ const accordion = (function ($) {
 			})
 			.toggleClass("active", expand);
 
-		$("#" + panelId).attr("hidden", !expand);
-		forceReflow($("#" + panelId));
-		$("#" + panelId).toggleClass("show", expand);
+		// jquery 슬라이드효과
+		$panel.removeAttr("hidden");
+		if (expand) {
+			$panel.stop(true, true).slideDown(200, function(){
+				$panel.addClass("show")
+			});
+		} else {
+			$panel.stop(true, true).slideUp(200, function(){
+				$panel.removeClass("show")
+			});
+		}
 	}
 
 	function toggleAccordion($btn) {
 		const expanded = $btn.attr("aria-expanded") === "true";
 		const $accordion = $btn.closest(".ui-accordion");
 
-		$accordion
-			.find("[aria-expanded='true']")
-			.not($btn)
-			.each(function () {
-				setAccordion($(this), false);
-			});
+
+		if(!$accordion.hasClass("multi")){
+			$accordion
+				.find("[aria-expanded='true']")
+				.not($btn)
+				.each(function () {
+					setAccordion($(this), false);
+				});
+		}
 
 		// 현재 버튼 토글
 		setAccordion($btn, !expanded);
@@ -208,7 +220,7 @@ const dropdown = (function ($) {
  * Popup
  * ============================================================================ */
 const layerPop = (function ($) {
-	const focusStack = [];
+	let focusStack = [];
 	let zIndex = 1000;
 
 	function openlayer(el) {

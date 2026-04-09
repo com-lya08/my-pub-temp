@@ -12,13 +12,14 @@
 		.inner-left {
 			height: 4rem;
 			line-height: 4rem;
-			background-color: rgb(47, 223, 164);
+			background-color: $color-primary;
+			color: $color-white;
 			text-align: center;
 			font-size: var(--text-size-lg);
 		}
 		.inner-right .footer-menu {
 			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+			grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 			justify-content: end;
 			gap: 2rem;
 			text-align: center;

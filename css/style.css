@@ -294,8 +294,8 @@ button:focus-visible {
 
 @media (max-width: 768px) {
   :root {
-    --text-size-base: 1.5rem;
-    --text-size-sm: 1.4rem;
+    --text-size-base: 1.4rem;
+    --text-size-sm: 1.3rem;
     --text-size-md: 1.6rem;
     --text-size-lg: 1.8rem;
     --text-size-xl: 1.8rem;
@@ -630,13 +630,14 @@ body {
 .footer .footer-inner .inner-left {
   height: 4rem;
   line-height: 4rem;
-  background-color: rgb(47, 223, 164);
+  background-color: #f0a80e;
+  color: #ffffff;
   text-align: center;
   font-size: var(--text-size-lg);
 }
 .footer .footer-inner .inner-right .footer-menu {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   justify-content: end;
   gap: 2rem;
   text-align: center;
@@ -760,14 +761,13 @@ body {
   background-color: rgba(var(--color-scheme-rvs-rgb), 0.0333333333);
   padding: 1.2rem;
   border-radius: 1rem;
-  transition: all 0.2s ease;
-  opacity: 0;
+  max-height: 50rem;
+  overflow-y: auto;
   visibility: hidden;
   transform: translateY(0.4rem);
-  transition: opacity 0.4s ease, transform 0.4s ease, height 0.4s ease, max-height 0.4s ease, visibility 0.4s ease;
+  transition: transform 0.2s ease, visibility 0.2s ease;
 }
 .ui-accordion .acc-panel.show {
-  opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
@@ -952,7 +952,7 @@ body {
   border-radius: 1rem;
 }
 .btn.btn-primary, .btn-primary.dropdown-btn, .btn-primary.tab-btn, .btn-primary.acc-btn {
-  background-color: #a65ee9;
+  background-color: #f0a80e;
   color: #ffffff;
 }
 .btn.btn-secondary, .btn-secondary.dropdown-btn, .btn-secondary.tab-btn, .btn-secondary.acc-btn {
@@ -978,8 +978,8 @@ body {
   transition: background-color 0.2s ease-in-out;
 }
 .tab-btn:hover, .acc-btn:hover, .tab-btn.active, .active.acc-btn {
-  background-color: rgba(166, 94, 233, 0.1666666667);
-  color: #a65ee9;
+  background-color: rgba(240, 168, 14, 0.1666666667);
+  color: #f0a80e;
 }
 .tab-btn.active, .active.acc-btn {
   font-weight: 600;
@@ -1012,7 +1012,7 @@ body {
 }
 .acc-btn.active::after {
   top: calc(50% - 2px);
-  border-color: #a65ee9;
+  border-color: #f0a80e;
   transform: rotate(-135deg);
 }
 

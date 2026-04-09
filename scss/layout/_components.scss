@@ -32,10 +32,18 @@
 		background-color: rgba(var(--color-scheme-rvs-rgb), alpha(1));
 		padding: 1.2rem;
 		border-radius: 1rem;
-		transition: all 0.2s ease;
-		@include fade-hidden();
+		max-height: 50rem;
+		overflow-y: auto;
+		visibility: hidden;
+		transform: translateY(0.4rem);
+		transition:
+			transform 0.2s ease,
+			visibility 0.2s ease;
+		// @include fade-hidden();
 		&.show {
-			@include fade-show();
+			// @include fade-show();
+			visibility: visible;
+			transform: translateY(0);
 		}
 	}
 }
