@@ -1,3 +1,4 @@
+"use strict";
 /* ================================
 	 * Tab
 	 * requestAnimationFrame: 브라우저의 repaint 타이밍에 맞춰 코드를 실행하는 예약 함수
@@ -520,8 +521,47 @@ const test1 = () => {
 		func,
 	};
 };
+const test1_ = function() {
+	function func() {
+		$("body").addClass("is-test1");
+		$("html").addClass(isSafari() ? "safari" : "");
+	}
+	return {
+		func,
+	};
+};
 
-const test2 = () => {};
+const test2 = {
+	func: function () {
+		$("body").addClass("is-test1");
+		$("html").addClass(isSafari() ? "safari" : "");
+	}
+};
+
+const test2_ = {
+	func () {
+		$("body").addClass("is-test1");
+		$("html").addClass(isSafari() ? "safari" : "");
+	}
+};
+
+// test1().func(); // 호출 필요
+// test2.func();   // 바로 사용
+// test2_ 는 test2의 축약형 (ES6)
+// test1 과 test1_ 는 일반함수와 화살표함수 차이
+
+/*---------------
+👉 function func() {}
+호이스팅 O
+어디서든 호출 가능
+
+👉 const func = function() {}
+호이스팅 X
+선언 후에만 사용 가능 (더 안전)
+---------*/
+
+
+const test4 = () => {};
 
 function isSafari() {
 	const ua = navigator.userAgent;
