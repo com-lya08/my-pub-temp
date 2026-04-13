@@ -1,4 +1,69 @@
 "use strict";
+
+/* ============================================================================
+ * 공통함수
+ * ============================================================================ */
+const common = {
+	getFocusable($el) {
+		return $el.find('a[href], button:not([disabled]), input:not([disabled]), textarea, select, [tabindex]:not([tabindex="-1"])');
+	},
+
+	trapFocus(e) {
+		if (e.key !== "Tab") return;
+
+		const $el = $(this);
+		const $items = common.getFocusable($el); // 여기서 this.getFocusable()로 호출하면 안되는 이유: $el(예: DOM element (.layer-popup))이 this가 될 수 있음. common객체 내의 getFocusable를 호출하고 싶은데 엉뚱하게 됨.
+		const first = $items.first()[0];
+		const last = $items.last()[0];
+
+		if (e.shiftKey && document.activeElement === first) {
+			e.preventDefault();
+			last.focus();
+		} else if (!e.shiftKey && document.activeElement === last) {
+			e.preventDefault();
+			first.focus();
+		}
+	},
+
+	forceReflow(target) {
+		const el = target?.jquery ? target[0] : target;
+		if (!el) return;
+		return el.offsetHeight; //여기서 레이아웃 확정(강제로 계산)
+	},
+
+	isSafari() {
+		const ua = navigator.userAgent;
+		const isSafari = ua.includes("Safari") && !ua.includes("Chrome");
+		const isIOS = /iPhone|iPad|iPod/.test(ua);
+
+		return isSafari || isIOS;
+	},
+
+	updateDimHeight() {
+		var height = Math.max($("body")[0].scrollHeight, $("html")[0].scrollHeight);
+		$(".layer-dimmed").height(height);
+	},
+};
+
+const bodyScroll = {
+	scrollLockCount: 0,
+
+	lock() {
+		if (this.scrollLockCount++ === 0) {
+			$("body").addClass("is-modal-open");
+		}
+		console.log("lock " + this.scrollLockCount);
+	},
+
+	unLock() {
+		if (this.scrollLockCount > 0 && --this.scrollLockCount === 0) {
+			$("body").removeClass("is-modal-open");
+		}
+		console.log("unlock " + this.scrollLockCount);
+	},
+};
+
+
 /* ================================
 	 * Tab
 	 * requestAnimationFrame: 브라우저의 repaint 타이밍에 맞춰 코드를 실행하는 예약 함수
@@ -35,7 +100,7 @@ const tab = (function ($) {
 			.addClass("active");
 
 		$("#" + panelId).removeAttr("hidden");
-		forceReflow($("#" + panelId));
+		common.forceReflow($("#" + panelId));
 		$("#" + panelId).addClass("show");
 	}
 
@@ -75,12 +140,12 @@ const accordion = (function ($) {
 
 		// jquery 슬라이드효과
 		if (expand) {
-			$panel.stop(true, true).slideDown(200, function(){
-				$panel.addClass("show")
+			$panel.stop(true, true).slideDown(200, function () {
+				$panel.addClass("show");
 			});
 		} else {
-			$panel.stop(true, true).slideUp(200, function(){
-				$panel.removeClass("show")
+			$panel.stop(true, true).slideUp(200, function () {
+				$panel.removeClass("show");
 			});
 		}
 	}
@@ -89,8 +154,7 @@ const accordion = (function ($) {
 		const expanded = $btn.attr("aria-expanded") === "true";
 		const $accordion = $btn.closest(".ui-accordion");
 
-
-		if(!$accordion.hasClass("multi")){
+		if (!$accordion.hasClass("multi")) {
 			$accordion
 				.find("[aria-expanded='true']")
 				.not($btn)
@@ -131,7 +195,7 @@ const accordion = (function ($) {
 })(jQuery);
 
 /* ================================
- * 드롭다운
+ * Dropdown
  * ================================ */
 const dropdown = (function ($) {
 	function setDropdown($btn, expand) {
@@ -143,7 +207,7 @@ const dropdown = (function ($) {
 		});
 
 		$("#" + menuId).attr("hidden", !expand);
-		forceReflow($("#" + menuId));
+		common.forceReflow($("#" + menuId));
 		$("#" + menuId).toggleClass("show", expand);
 	}
 
@@ -216,9 +280,9 @@ const dropdown = (function ($) {
 	};
 })(jQuery);
 
-/* ============================================================================
+/* ================================
  * Popup
- * ============================================================================ */
+ * ================================ */
 const layerPop = (function ($) {
 	let focusStack = [];
 	let zIndex = 1000;
@@ -229,10 +293,10 @@ const layerPop = (function ($) {
 		focusStack.push(document.activeElement);
 		zIndex += 2;
 		$dialog.removeAttr("hidden");
-		forceReflow($dialog);
+		common.forceReflow($dialog);
 		$dialog.css("z-index", zIndex).removeClass("is-expanded").addClass("show");
 		$dialog.one("transitionend", () => {
-			const $firstFocusable = getFocusable($dialog).first();
+			const $firstFocusable = common.getFocusable($dialog).first();
 			if ($firstFocusable.length) {
 				$firstFocusable.focus();
 			} else {
@@ -241,7 +305,7 @@ const layerPop = (function ($) {
 		});
 		if (!$(".layer-dimmed").length) {
 			$("body").append('<div class="layer-dimmed"></div>');
-			updateDimHeight();
+			common.updateDimHeight();
 		}
 		$(".layer-dimmed")
 			.css("z-index", zIndex - 1)
@@ -320,7 +384,7 @@ const layerPop = (function ($) {
 				const target = $(this).closest(".layer-popup");
 				closelayer(target);
 			})
-			.on("keydown", ".layer-popup", trapFocus);
+			.on("keydown", ".layer-popup", common.trapFocus);
 	}
 
 	function init() {
@@ -397,15 +461,15 @@ function headerInit() {
 	$mMenuBtn.on("click", function () {
 		$mMenu.removeAttr("hidden");
 		bodyScroll.lock();
-		forceReflow($mMenu);
+		common.forceReflow($mMenu);
 		$mMenu.addClass("show");
-		$mMenu.on("keydown", trapFocus); // 여기서 바로 걸기
+		$mMenu.on("keydown", common.trapFocus); // 여기서 바로 걸기
 	});
 
 	$mMenuClose.on("click", function () {
 		$mMenu.removeClass("show");
 		bodyScroll.unLock();
-		$mMenu.off("keydown", trapFocus);
+		$mMenu.off("keydown", common.trapFocus);
 
 		$mMenu.one("transitionend", () => {
 			$mMenu.attr("hidden", true);
@@ -447,9 +511,9 @@ function headerInit() {
 		}
 	});
 }
-/* ============================================================================
- * 초기화 함수
- * ============================================================================ */
+/* ================================
+ * 초기화
+ * ================================ */
 $(document).ready(function () {
 	layerPop.init();
 	tab.init();
@@ -463,68 +527,23 @@ $(document).ready(function () {
 // $(document).ready(tab.init);
 // document.addEventListener("DOMContentLoaded", layerPop.init);
 
-/* ============================================================================
- * 공통함수
- * ============================================================================ */
-function getFocusable($el) {
-	return $el.find('a[href], button:not([disabled]), input:not([disabled]), textarea, select, [tabindex]:not([tabindex="-1"])');
-}
 
-function trapFocus(e) {
-	if (e.key !== "Tab") return;
-
-	const $el = $(this);
-	const $items = getFocusable($el);
-	const first = $items.first()[0];
-	const last = $items.last()[0];
-
-	if (e.shiftKey && document.activeElement === first) {
-		e.preventDefault();
-		last.focus();
-	} else if (!e.shiftKey && document.activeElement === last) {
-		e.preventDefault();
-		first.focus();
-	}
-}
-
-function forceReflow(target) {
-	const el = target?.jquery ? target[0] : target;
-	if (!el) return;
-	return el.offsetHeight; //여기서 레이아웃 확정(강제로 계산)
-}
-
-const bodyScroll = (() => {
-	let scrollLockCount = 0;
-	return {
-		lock() {
-			scrollLockCount++;
-			$("body").addClass("is-modal-open");
-			console.log("lock" + scrollLockCount);
-		},
-		unLock() {
-			scrollLockCount = Math.max(0, scrollLockCount - 1); //닫힌 layer 만큼 count 감소, 최소 0으로 유지
-
-			if (scrollLockCount === 0) {
-				$("body").removeClass("is-modal-open");
-			}
-			console.log("unlock" + scrollLockCount);
-		},
-	};
-})();
-
+/* ================================
+ * 테스트/연습
+ * ================================ */
 const test1 = () => {
 	function func() {
 		$("body").addClass("is-test1");
-		$("html").addClass(isSafari() ? "safari" : "");
+		$("html").addClass(common.isSafari() ? "safari" : "");
 	}
 	return {
 		func,
 	};
 };
-const test1_ = function() {
+const test1_ = function () {
 	function func() {
 		$("body").addClass("is-test1");
-		$("html").addClass(isSafari() ? "safari" : "");
+		$("html").addClass(common.isSafari() ? "safari" : "");
 	}
 	return {
 		func,
@@ -534,15 +553,15 @@ const test1_ = function() {
 const test2 = {
 	func: function () {
 		$("body").addClass("is-test1");
-		$("html").addClass(isSafari() ? "safari" : "");
-	}
+		$("html").addClass(common.isSafari() ? "safari" : "");
+	},
 };
 
 const test2_ = {
-	func () {
+	func() {
 		$("body").addClass("is-test1");
-		$("html").addClass(isSafari() ? "safari" : "");
-	}
+		$("html").addClass(common.isSafari() ? "safari" : "");
+	},
 };
 
 // test1().func(); // 호출 필요
@@ -560,21 +579,37 @@ const test2_ = {
 선언 후에만 사용 가능 (더 안전)
 ---------*/
 
-
 const test4 = () => {};
 
-function isSafari() {
-	const ua = navigator.userAgent;
-	const isSafari = ua.includes("Safari") && !ua.includes("Chrome");
-	const isIOS = /iPhone|iPad|iPod/.test(ua);
 
-	return isSafari || isIOS;
-}
 
-function updateDimHeight() {
-	var height = Math.max($("body")[0].scrollHeight, $("html")[0].scrollHeight);
-	$(".layer-dimmed").height(height);
-}
+// const bodyScroll = (() => {
+// 	let scrollLockCount = 0;
+// 	return {
+// 		lock() {
+// 			scrollLockCount++;
+// 			$("body").addClass("is-modal-open");
+// 			console.log("lock" + scrollLockCount);
+// 		},
+// 		unLock() {
+// 			scrollLockCount = Math.max(0, scrollLockCount - 1); //닫힌 layer 만큼 count 감소, 최소 0으로 유지
+
+// 			if (scrollLockCount === 0) {
+// 				$("body").removeClass("is-modal-open");
+// 			}
+// 			console.log("unlock" + scrollLockCount);
+// 		},
+// 	};
+// })();
+
+// $(".wrap").on("keydown", ".layer-popup", function (e) {
+//   console.log(this); // DOM element (.layer-popup)
+// });
+// $(".wrap").on("keydown", ".layer-popup", (e) => {
+//   console.log(this.scrollLockCount); // 👉 화살표 함수 (=>)는 this를 “안 받는다”
+// });
+
+
 
 // function closeSitemapIfMobile() {
 // 	if (window.innerWidth >= 768) return;
