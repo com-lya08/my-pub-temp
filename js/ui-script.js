@@ -365,8 +365,8 @@ const krds_mainMenuMobile = {
       const gnbBody = document.querySelector(".gnb-body");
       gnbBody.style.scrollBehavior = "auto";
       gnbBody.scrollTop = top
-    } 
-    
+    }
+
     setTimeout(() => {
       mobileGnb.classList.add("is-backdrop");
       mobileGnb.classList.add("is-open");
@@ -382,7 +382,7 @@ const krds_mainMenuMobile = {
       document.querySelector("#krds-header .header-in").setAttribute("inert", "");
       document.getElementById("container")?.setAttribute("inert", "");
       document.getElementById("footer")?.setAttribute("inert", "");
-      
+
       // 포커스 트랩 설정
       common.focusTrap(mobileGnb);
     });
@@ -402,13 +402,13 @@ const krds_mainMenuMobile = {
     document.querySelector("#krds-header .header-in").removeAttribute("inert");
     document.getElementById("container")?.removeAttribute("inert");
     document.getElementById("footer")?.removeAttribute("inert");
-    
+
     // transition 종료후 실행
     mobileGnb.addEventListener("transitionend", function onTransitionEnd() {
       openGnb.focus();
       mobileGnb.removeEventListener("transitionend", onTransitionEnd);
     });
-    
+
     setTimeout(() => {
       mobileGnb.style.display = "none";
       document.body.classList.remove("is-gnb-mobile");
@@ -601,7 +601,7 @@ const krds_sideNavigation = {
     toggleButtons.forEach((toggleButton) => {
       toggleButton.addEventListener("click", () => {
         const expand = toggleButton.getAttribute("aria-expanded") !== "true";
-        
+
         //this.toggleMenu(toggleButton, expand); 클릭 시 해당 버튼만 활성화 상태로 변경되어 해당 이벤트 주석처리.
         //this.closeSiblingMenus(toggleButton);  클릭 시 해당 버튼만 활성화 상태로 변경되어 해당 이벤트 주석처리.
         this.setActiveNav(toggleButton, expand);
@@ -678,7 +678,7 @@ const krds_sideNavigation = {
     const siblingButtons = parentListItem.parentNode.querySelectorAll(":scope > li > .lnb-toggle");
     siblingButtons.forEach((siblingButton) => {
       if (siblingButton !== toggleButton) {
-        this.toggleMenu(siblingButton, false); 
+        this.toggleMenu(siblingButton, false);
       }
     });
   },
@@ -882,7 +882,7 @@ const krds_modal = {
           trigger.setAttribute("data-modal-id", modalId);
           trigger.classList.add("modal-opened");
           trigger.setAttribute("tabindex", "-1");
-			
+
           this.openModal(modalId);
         }
       });
@@ -924,7 +924,7 @@ const krds_modal = {
     setTimeout(() => {
       modalElement.classList.add("in");
     }, 150);
-    
+
     //열린 팝업창 포커스
     const focusables = modalElement.querySelectorAll(`a, button, [tabindex="0"], input, textarea, select`);
     setTimeout(() => {
@@ -985,7 +985,7 @@ const krds_modal = {
     if (openModals.length < 2) {
       document.querySelector("body").classList.remove("scroll-no");
     }
-    
+
     // inert 설정
     document.getElementById("wrap")?.removeAttribute("inert");
 
@@ -1611,13 +1611,13 @@ const krds_calendar = {
               otherBtn.removeAttribute("aria-pressed");
             });
             btn.closest("td").classList.add("period", "start", "end");
-            btn.setAttribute("aria-pressed", "true");  
+            btn.setAttribute("aria-pressed", "true");
           });
           // action
           actionBtns.forEach((action) => {
             accReset(action, btn, "single");
           });
-        } else {         
+        } else {
           btn.addEventListener("click", () => {
             const currentTd = btn.closest("td");
             // 현재 td의 날짜
@@ -2321,7 +2321,7 @@ const krds_chkBox = {
     const formChip = document.querySelectorAll(".krds-form-chip");
 
     if (!formChip.length) return;
-    
+
     formChip.forEach((chip) => {
       const input = chip.querySelector("input");
       if (!input) return;
@@ -2404,16 +2404,16 @@ const nuriToggleEvent = {
 const krds_tts = {
   speechSynthesis: null,
   activeButton: null,
-  
+
   init() {
     this.speechSynthesis = window.speechSynthesis;
     // Chrome에서 voices 초기화 트리거(비동기 로드되더라도 speak는 지연 없이 호출해야 함)
     try {
       this.speechSynthesis && this.speechSynthesis.getVoices();
     } catch (e) {}
-    
+
     const ttsButtons = document.querySelectorAll(".krds-tts:not([disabled]):not(.disabled)");
-    
+
     ttsButtons.forEach((button) => {
       button.setAttribute("aria-pressed", "false");
       // onclick이 없으면 이벤트 리스너 추가
@@ -2428,61 +2428,61 @@ const krds_tts = {
       }
     });
   },
-  
+
   toggle(button, text) {
     const isPlaying = button.classList.contains("is-playing");
-    
+
     if (isPlaying) {
       this.stop(button);
     } else {
       this.play(button, text);
     }
   },
-  
+
   play(button, text) {
     if (!text || text.trim() === '') return;
     if (!this.speechSynthesis) return;
-    
+
     // 다른 버튼이 재생 중이면 멈춤
     if (this.activeButton && this.activeButton !== button) {
       this.stop(this.activeButton);
     }
-    
+
     // 상태 업데이트
     const isPlayType = button.classList.contains("play");
     if (isPlayType) {
       this.changeToPause(button);
     }
-    
+
     button.classList.add("is-playing");
     button.setAttribute("aria-pressed", "true");
     this.activeButton = button;
     this.updateText(button, "멈춤");
-    
+
     // TTS 재생
     this.speak(text, button);
   },
-  
+
   stop(button) {
     if (this.speechSynthesis) {
       this.speechSynthesis.cancel();
     }
-    
+
     button.classList.remove("is-playing");
     button.setAttribute("aria-pressed", "false");
-    
+
     // Play 타입이었던 경우 원래대로 복원
     if (button.classList.contains("pause") && button.dataset.wasPlayType === "true") {
       this.changeToPlay(button);
     }
-    
+
     this.updateText(button, "재생");
-    
+
     if (this.activeButton === button) {
       this.activeButton = null;
     }
   },
-  
+
   speak(text, button) {
     if (!this.speechSynthesis) return;
     // Chrome: user gesture 안에서 speak가 실행되어야 해서 지연 호출(setTimeout 등) 금지
@@ -2491,7 +2491,7 @@ const krds_tts = {
     }
     this.startUtterance(text, button);
   },
-  
+
   startUtterance(text, button) {
     if (!this.speechSynthesis) return;
     const utterance = new SpeechSynthesisUtterance(text);
@@ -2537,7 +2537,7 @@ const krds_tts = {
       }
     }
   },
-  
+
   changeToPause(button) {
     if (!button.dataset.wasPlayType) {
       button.dataset.wasPlayType = "true";
@@ -2550,7 +2550,7 @@ const krds_tts = {
       icon.classList.add("ico-stop");
     }
   },
-  
+
   changeToPlay(button) {
     button.classList.remove("pause");
     button.classList.add("play");
@@ -2561,16 +2561,16 @@ const krds_tts = {
     }
     delete button.dataset.wasPlayType;
   },
-  
+
   updateText(button, newText) {
     const textElement = button.querySelector(".krds-tts-text");
     if (!textElement) return;
-    
+
     // 원래 텍스트 저장 (처음 한 번만)
     if (!textElement.dataset.originalText) {
       textElement.dataset.originalText = textElement.textContent.trim();
     }
-    
+
     // 원래 텍스트가 "재생"인 경우만 변경
     const originalText = textElement.dataset.originalText;
     if (originalText === "재생") {
@@ -2589,7 +2589,7 @@ window.krds_playTts = function(text, buttonElement) {
       console.log("[krds-tts] protocol:", location.protocol, "voices:", window.speechSynthesis.getVoices().length);
     }
   } catch (e) {}
-  
+
   // buttonElement 찾기
   if (!buttonElement) {
     const event = window.event || (typeof event !== 'undefined' ? event : null);
@@ -2600,14 +2600,14 @@ window.krds_playTts = function(text, buttonElement) {
       buttonElement = document.activeElement;
     }
   }
-  
+
   if (!buttonElement || !buttonElement.classList.contains("krds-tts")) return;
-  
+
   // aria-pressed 초기값 설정
   if (!buttonElement.hasAttribute("aria-pressed")) {
     buttonElement.setAttribute("aria-pressed", "false");
   }
-  
+
   // 재생/멈춤 토글
   const isPlaying = buttonElement.classList.contains("is-playing");
   if (isPlaying) {
@@ -2662,3 +2662,4 @@ window.addEventListener("resize", () => {
   windowSize.setWinSize();
   krds_helpPanel.init();
 });
+// test
