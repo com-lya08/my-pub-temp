@@ -51,6 +51,7 @@ const bodyScroll = {
 	lock() {
 		if (this.scrollLockCount++ === 0) {
 			$("body").addClass("is-modal-open");
+			// lenis.stop();
 		}
 		console.log("lock " + this.scrollLockCount);
 	},
@@ -58,11 +59,11 @@ const bodyScroll = {
 	unLock() {
 		if (this.scrollLockCount > 0 && --this.scrollLockCount === 0) {
 			$("body").removeClass("is-modal-open");
+			// lenis.start()
 		}
 		console.log("unlock " + this.scrollLockCount);
 	},
 };
-
 
 /* ================================
 	 * Tab
@@ -287,9 +288,13 @@ const layerPop = (function ($) {
 	let focusStack = [];
 	let zIndex = 1000;
 
+	/**
+	 * 레이어 팝업
+	 */
 	function openlayer(el) {
 		const $dialog = typeof el === "string" ? $(`#${el}`) : el;
-		if (!$dialog || !$dialog.length) return; // 요소 없으면 종료
+		if (!$dialog || !$dialog.length) return;
+
 		focusStack.push(document.activeElement);
 		zIndex += 2;
 		$dialog.removeAttr("hidden");
@@ -350,8 +355,57 @@ const layerPop = (function ($) {
 
 		bodyScroll.unLock();
 
+		restoreFocus();
+	}
+
+	/**
+	 * window.open 팝업
+	 */
+	function openWindowPopup(url, options = {}) {
+		const { name = "default popup", width = 600, height = 700, features = "" } = options;
+
+		// 현재 포커스 저장
+		focusStack.push(document.activeElement);
+		const left = window.screenX + (window.outerWidth - width) / 2;
+		const top = window.screenY + (window.outerHeight - height) / 2;
+		const popupFeatures = `
+			width=${width},
+			height=${height},
+			left=${left},
+			top=${top},
+			resizable=yes,
+			scrollbars=yes,
+			${features}
+		`;
+
+		const winPopup = window.open(url, name, popupFeatures);
+
+		// 팝업 차단
+		if (!winPopup) {
+			restoreFocus();
+			return null;
+		}
+
+		// 팝업 닫힘 감지
+		const timer = setInterval(() => {
+			if (winPopup.closed) {
+				clearInterval(timer);
+				restoreFocus();
+			}
+		}, 300);
+
+		return winPopup;
+	}
+
+	/**
+	 * 포커스 복귀 공통
+	 */
+	function restoreFocus() {
 		const prevFocus = focusStack.pop();
-		if (prevFocus && typeof prevFocus.focus === "function") prevFocus.focus();
+
+		if (prevFocus && typeof prevFocus.focus === "function") {
+			prevFocus.focus();
+		}
 	}
 
 	function closeAllLayers() {
@@ -384,6 +438,13 @@ const layerPop = (function ($) {
 				const target = $(this).closest(".layer-popup");
 				closelayer(target);
 			})
+			.on("click", ".openWindowPopup", function () {
+				openWindowPopup( $(this).data("window-url"), {
+					name: $(this).data("window-name"),
+					width: $(this).data("window-width"),
+					height: $(this).data("window-height"),
+				});
+			})
 			.on("keydown", ".layer-popup", common.trapFocus);
 	}
 
@@ -396,6 +457,8 @@ const layerPop = (function ($) {
 		openlayer,
 		closelayer,
 		closeAllLayers,
+		openWindowPopup,
+		restoreFocus,
 		focusStack,
 	};
 })(jQuery);
@@ -527,7 +590,6 @@ $(document).ready(function () {
 // $(document).ready(tab.init);
 // document.addEventListener("DOMContentLoaded", layerPop.init);
 
-
 /* ================================
  * 테스트/연습
  * ================================ */
@@ -581,8 +643,6 @@ const test2_ = {
 
 const test4 = () => {};
 
-
-
 // const bodyScroll = (() => {
 // 	let scrollLockCount = 0;
 // 	return {
@@ -608,8 +668,6 @@ const test4 = () => {};
 // $(".wrap").on("keydown", ".layer-popup", (e) => {
 //   console.log(this.scrollLockCount); // 👉 화살표 함수 (=>)는 this를 “안 받는다”
 // });
-
-
 
 // function closeSitemapIfMobile() {
 // 	if (window.innerWidth >= 768) return;
