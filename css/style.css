@@ -964,7 +964,7 @@ body {
   color: var(--color-text);
 }
 .btn.btn-line, .btn-line.dropdown-btn, .btn-line.tab-btn, .btn-line.acc-btn {
-  background-color: var(--color-gray-20);
+  background-color: var(--color-gray-00);
   border: 1px solid var(--color-gray-30);
 }
 .btn.h-48, .h-48.dropdown-btn, .h-48.tab-btn, .h-48.acc-btn {
